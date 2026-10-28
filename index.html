@@ -6,6 +6,10 @@
   <title>NEC Electrical Sizing Formulas & Power Calculators Reference</title>
   <meta name="description" content="US residential electrical, solar PV, battery backup and generator sizing equations grounded in National Electrical Code (NEC / NFPA 70) standards and CalcMyPower engineering calculators.">
   <link rel="canonical" href="https://calcmypowerharis-app.github.io/nec-electrical-power-sizing-formulas/">
+  <meta property="og:title" content="NEC Electrical Sizing Formulas & Power Calculators Reference">
+  <meta property="og:description" content="US residential electrical, solar PV, battery backup and generator sizing equations grounded in National Electrical Code (NEC / NFPA 70) standards and CalcMyPower engineering calculators.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://calcmypowerharis-app.github.io/nec-electrical-power-sizing-formulas/">
   <style>
     :root {
       --bg-primary: #0b1120;
@@ -109,7 +113,7 @@
     }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.25rem;
       margin-top: 1rem;
       margin-bottom: 2rem;
@@ -149,13 +153,20 @@
       color: #38bdf8;
       margin: 1rem 0 1.5rem;
     }
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 1.25rem 0 2rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
     table {
       width: 100%;
+      min-width: 560px;
       border-collapse: collapse;
-      margin: 1.25rem 0 2rem;
+      margin: 0;
       background: var(--bg-surface);
-      border-radius: 8px;
-      overflow: hidden;
     }
     th, td {
       padding: 0.75rem 1rem;
@@ -348,54 +359,56 @@
 P_continuous_safe = V_circuit * I_breaker_rating * 0.80 * PF
 I_breaker_required = I_continuous_load * 1.25</pre>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Circuit Rating</th>
-            <th>Voltage</th>
-            <th>Peak Breaker Wattage</th>
-            <th>NEC 80% Continuous Limit</th>
-            <th>Minimum Conductor</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>15 Amps</strong></td>
-            <td>120V AC</td>
-            <td>1,800 Watts</td>
-            <td><strong>1,440 Watts</strong></td>
-            <td>14 AWG Copper</td>
-          </tr>
-          <tr>
-            <td><strong>20 Amps</strong></td>
-            <td>120V AC</td>
-            <td>2,400 Watts</td>
-            <td><strong>1,920 Watts</strong></td>
-            <td>12 AWG Copper</td>
-          </tr>
-          <tr>
-            <td><strong>30 Amps</strong></td>
-            <td>240V AC</td>
-            <td>7,200 Watts</td>
-            <td><strong>5,760 Watts</strong></td>
-            <td>10 AWG Copper</td>
-          </tr>
-          <tr>
-            <td><strong>50 Amps</strong></td>
-            <td>240V AC</td>
-            <td>12,000 Watts</td>
-            <td><strong>9,600 Watts</strong></td>
-            <td>6 AWG Copper</td>
-          </tr>
-          <tr>
-            <td><strong>200 Amps</strong></td>
-            <td>240V AC</td>
-            <td>48,000 Watts</td>
-            <td><strong>38,400 Watts</strong></td>
-            <td>2/0 Cu or 4/0 Al</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Circuit Rating</th>
+              <th>Voltage</th>
+              <th>Peak Breaker Wattage</th>
+              <th>NEC 80% Continuous Limit</th>
+              <th>Minimum Conductor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>15 Amps</strong></td>
+              <td>120V AC</td>
+              <td>1,800 Watts</td>
+              <td><strong>1,440 Watts</strong></td>
+              <td>14 AWG Copper</td>
+            </tr>
+            <tr>
+              <td><strong>20 Amps</strong></td>
+              <td>120V AC</td>
+              <td>2,400 Watts</td>
+              <td><strong>1,920 Watts</strong></td>
+              <td>12 AWG Copper</td>
+            </tr>
+            <tr>
+              <td><strong>30 Amps</strong></td>
+              <td>240V AC</td>
+              <td>7,200 Watts</td>
+              <td><strong>5,760 Watts</strong></td>
+              <td>10 AWG Copper</td>
+            </tr>
+            <tr>
+              <td><strong>50 Amps</strong></td>
+              <td>240V AC</td>
+              <td>12,000 Watts</td>
+              <td><strong>9,600 Watts</strong></td>
+              <td>6 AWG Copper</td>
+            </tr>
+            <tr>
+              <td><strong>200 Amps</strong></td>
+              <td>240V AC</td>
+              <td>48,000 Watts</td>
+              <td><strong>38,400 Watts</strong></td>
+              <td>2/0 Cu or 4/0 Al</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <h3>2. Motor Locked-Rotor Starting Surge (NEC Article 430)</h3>
       <p>Compressors and electric pump motors draw inrush surge currents up to 6 times full-load amps. Portable and standby generators must support the total running wattage plus the single largest startup surge delta:</p>
@@ -431,6 +444,7 @@ Voltage Drop Percent:   VD_percent = (VD / V_source) * 100</pre>
       <a href="https://calcmypower.com/calculators" rel="dofollow">Calculators Directory</a> |
       <a href="https://calcmypower.com/about" rel="dofollow">About</a> |
       <a href="https://calcmypower.com/contact" rel="dofollow">Contact</a> |
+      <a href="https://calcmypower.com/terms" rel="dofollow">Terms</a> |
       <a href="https://calcmypower.com/privacy" rel="dofollow">Privacy</a>
     </p>
   </footer>
