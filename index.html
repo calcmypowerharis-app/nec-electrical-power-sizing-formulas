@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEC Electrical Sizing Formulas & Power Calculators Reference</title>
+  <meta name="description" content="US residential electrical, solar PV, battery backup and generator sizing equations grounded in National Electrical Code (NEC / NFPA 70) standards and CalcMyPower engineering calculators.">
+  <link rel="canonical" href="https://calcmypowerharis-app.github.io/nec-electrical-power-sizing-formulas/">
+  <style>
+    :root {
+      --bg-primary: #0b1120;
+      --bg-surface: #1e293b;
+      --bg-card: #0f172a;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #10b981;
+      --accent-hover: #34d399;
+      --border: #334155;
+      --code-bg: #030712;
+      --amber: #f59e0b;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 0;
+    }
+    header {
+      background: linear-gradient(180deg, #0f172a 0%, #0b1120 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 3rem 1.5rem 2.5rem;
+      text-align: center;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    header h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      line-height: 1.25;
+      max-width: 900px;
+      margin: 0 auto 1rem;
+      color: #ffffff;
+    }
+    header p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 760px;
+      margin: 0 auto 1.5rem;
+    }
+    .hero-btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #022c22;
+      font-weight: 700;
+      padding: 0.75rem 1.75rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.15s ease-in-out;
+    }
+    .hero-btn:hover {
+      background: var(--accent-hover);
+    }
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+    h2 {
+      font-size: 1.75rem;
+      margin: 2.5rem 0 1.25rem;
+      color: #ffffff;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+    h3 {
+      font-size: 1.25rem;
+      margin: 1.75rem 0 0.75rem;
+      color: var(--accent);
+    }
+    p {
+      margin-bottom: 1rem;
+      color: #cbd5e1;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    a:hover {
+      color: var(--accent-hover);
+      text-decoration: underline;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+    }
+    .card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      transition: transform 0.15s, border-color 0.15s;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
+    .card h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .card p {
+      font-size: 0.925rem;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+    .card .link {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    pre {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      overflow-x: auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.9rem;
+      color: #38bdf8;
+      margin: 1rem 0 1.5rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0 2rem;
+      background: var(--bg-surface);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    th {
+      background: #0f172a;
+      color: #ffffff;
+      font-weight: 600;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--amber);
+      font-weight: 600;
+    }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem 1.5rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      background: #0a0f1d;
+    }
+    footer a {
+      color: var(--text-muted);
+      margin: 0 0.5rem;
+    }
+    footer a:hover {
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="badge">Open Technical Reference</div>
+    <h1>US Residential Electrical, Solar PV, Battery Backup & Generator Sizing Formulas</h1>
+    <p>A reference compilation of governing National Electrical Code (NEC / NFPA 70) equations, motor startup surge models, and battery runtime algorithms published by CalcMyPower.</p>
+    <div>
+      <a href="https://calcmypower.com/" class="hero-btn" rel="dofollow">Visit CalcMyPower.com</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <section>
+      <h2>Interactive Engineering Calculators</h2>
+      <p>All calculations operate client-side with transparent formula models and realistic electrical deratings at <a href="https://calcmypower.com/calculators" rel="dofollow">CalcMyPower.com/calculators</a>:</p>
+      
+      <div class="grid">
+        <div class="card">
+          <h4><a href="https://calcmypower.com/electricity-use-calculator" rel="dofollow">Electricity Usage Calculator</a></h4>
+          <p>Compute appliance kilowatt-hour (kWh) consumption across daily, monthly, and yearly duty cycles with master wattage database.</p>
+          <a href="https://calcmypower.com/electricity-use-calculator" class="link" rel="dofollow">Launch Calculator &rarr;</a>
+        </div>
+        <div class="card">
+          <h4><a href="https://calcmypower.com/electricity-cost-calculator" rel="dofollow">Electricity Cost Calculator</a></h4>
+          <p>Estimate true monthly electric utility bills based on volumetric kWh tiers, fixed meter customer charges, and fuel adjustments.</p>
+          <a href="https://calcmypower.com/electricity-cost-calculator" class="link" rel="dofollow">Launch Calculator &rarr;</a>
+        </div>
+        <div class="card">
+          <h4><a href="https://calcmypower.com/generator-size-calculator" rel="dofollow">Generator Size Calculator</a></h4>
+          <p>Size portable and whole-house standby generators using appliance running watts, single-motor surge deltas, and 25% continuous headroom.</p>
+          <a href="https://calcmypower.com/generator-size-calculator" class="link" rel="dofollow">Launch Calculator &rarr;</a>
+        </div>
+        <div class="card">
+          <h4><a href="https://calcmypower.com/generator-fuel-consumption-calculator" rel="dofollow">Generator Fuel Consumption Calculator</a></h4>
+          <p>Calculate gasoline, propane, and diesel burn rates in gal/hr and runtimes per tank across 25%, 50%, 75%, and 100% electrical loads.</p>
+          <a href="https://calcmypower.com/generator-fuel-consumption-calculator" class="link" rel="dofollow">Launch Calculator &rarr;</a>
+        </div>
+        <div class="card">
+          <h4><a href="https://calcmypower.com/battery-capacity-calculator" rel="dofollow">Battery Capacity Calculator</a></h4>
+          <p>Determine Amp-hour (Ah) and Watt-hour (Wh) requirements for 12V, 24V, and 48V banks across LiFePO4 and AGM lead-acid chemistry.</p>
+          <a href="https://calcmypower.com/battery-capacity-calculator" class="link" rel="dofollow">Launch Calculator &rarr;</a>
+        </div>
+        <div class="card">
+          <h4><a href="https://calcmypower.com/ups-battery-backup-calculator" rel="dofollow">UPS Runtime Calculator</a></h4>
+          <p>Calculate backup runtime hours for uninterruptible power supplies powering PC workstations, routers, and CPAP devices.</p>
+          <a href="https://calcmypower.com/ups-battery-backup-calculator" class="link" rel="dofollow">Launch Calculator &rarr;</a>
+        </div>
+        <div class="card">
+          <h4><a href="https://calcmypower.com/inverter-size-calculator" rel="dofollow">Inverter Size Calculator</a></h4>
+          <p>Determine continuous inverter wattage, motor surge capacity, DC battery cable gauge (AWG), and catastrophic fuse protection.</p>
+          <a href="https://calcmypower.com/inverter-size-calculator" class="link" rel="dofollow">Launch Calculator &rarr;</a>
+        </div>
+        <div class="card">
+          <h4><a href="https://calcmypower.com/watts-to-amps-calculator" rel="dofollow">Watts to Amps Calculator</a></h4>
+          <p>Convert real power in Watts to circuit current in Amperes across DC, 120V/240V AC, and 3-phase circuits with NEC wire gauge charts.</p>
+          <a href="https://calcmypower.com/watts-to-amps-calculator" class="link" rel="dofollow">Launch Calculator &rarr;</a>
+        </div>
+        <div class="card">
+          <h4><a href="https://calcmypower.com/amps-to-watts-calculator" rel="dofollow">Amps to Watts Calculator</a></h4>
+          <p>Convert circuit amperage to continuous real power and verify NEC 80% continuous-load branch circuit thresholds.</p>
+          <a href="https://calcmypower.com/amps-to-watts-calculator" class="link" rel="dofollow">Launch Calculator &rarr;</a>
+        </div>
+        <div class="card">
+          <h4><a href="https://calcmypower.com/voltage-drop-calculator" rel="dofollow">Voltage Drop Calculator</a></h4>
+          <p>Calculate voltage drop and conductor percentage loss for AC and DC circuits to meet NEC 3% branch circuit design guidelines.</p>
+          <a href="https://calcmypower.com/voltage-drop-calculator" class="link" rel="dofollow">Launch Calculator &rarr;</a>
+        </div>
+        <div class="card">
+          <h4><a href="https://calcmypower.com/three-phase-power-calculator" rel="dofollow">Three Phase Power Calculator</a></h4>
+          <p>Solve balanced 3-phase 208V, 240V, and 480V circuits for real power (kW), apparent power (kVA), line current, and power factor.</p>
+          <a href="https://calcmypower.com/three-phase-power-calculator" class="link" rel="dofollow">Launch Calculator &rarr;</a>
+        </div>
+        <div class="card">
+          <h4><a href="https://calcmypower.com/solar-system-size-calculator" rel="dofollow">Solar System Size Calculator</a></h4>
+          <p>Calculate residential solar array kW capacity, panel count, and roof space from monthly kWh usage and regional peak sun hours.</p>
+          <a href="https://calcmypower.com/solar-system-size-calculator" class="link" rel="dofollow">Launch Calculator &rarr;</a>
+        </div>
+        <div class="card">
+          <h4><a href="https://calcmypower.com/solar-charge-controller-calculator" rel="dofollow">Solar Charge Controller Calculator</a></h4>
+          <p>Size MPPT and PWM charge controllers with NEC 125% continuous output current and cold-weather Voc safety corrections.</p>
+          <a href="https://calcmypower.com/solar-charge-controller-calculator" class="link" rel="dofollow">Launch Calculator &rarr;</a>
+        </div>
+        <div class="card">
+          <h4><a href="https://calcmypower.com/solar-battery-calculator" rel="dofollow">Solar Battery Calculator</a></h4>
+          <p>Size dedicated off-grid and hybrid solar battery banks in kWh and Ah based on daily energy consumption and days of autonomy.</p>
+          <a href="https://calcmypower.com/solar-battery-calculator" class="link" rel="dofollow">Launch Calculator &rarr;</a>
+        </div>
+        <div class="card">
+          <h4><a href="https://calcmypower.com/solar-panel-tilt-calculator" rel="dofollow">Solar Panel Tilt Angle Calculator</a></h4>
+          <p>Calculate optimal solar panel tilt angles, compass azimuth orientation, and roof pitch slope conversions for your latitude.</p>
+          <a href="https://calcmypower.com/solar-panel-tilt-calculator" class="link" rel="dofollow">Launch Calculator &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Authoritative Electrical & Energy Sizing Guides</h2>
+      <p>Step-by-step engineering guides covering NEC code requirements, locked-rotor surge factors, and battery chemistry models:</p>
+      
+      <div class="grid">
+        <div class="card">
+          <h4><a href="https://calcmypower.com/what-size-generator-do-i-need-for-my-house" rel="dofollow">What Size Generator Do I Need for My House?</a></h4>
+          <p>Step-by-step sizing guide for whole-house and essential circuit outage backup power.</p>
+        </div>
+        <div class="card">
+          <h4><a href="https://calcmypower.com/what-size-generator-to-run-a-refrigerator" rel="dofollow">What Size Generator to Run a Refrigerator?</a></h4>
+          <p>Locked-rotor motor compressor surge calculations and simultaneous load budgeting.</p>
+        </div>
+        <div class="card">
+          <h4><a href="https://calcmypower.com/what-does-ah-mean-on-a-battery" rel="dofollow">What Does Ah Mean on a Battery?</a></h4>
+          <p>Amp-hour charge capacity, Watt-hour conversions, C-rate discharge curves, and Peukert losses.</p>
+        </div>
+        <div class="card">
+          <h4><a href="https://calcmypower.com/what-is-a-watt-hour" rel="dofollow">What Is a Watt-Hour (Wh)?</a></h4>
+          <p>The fundamental distinction between instantaneous power (Watts) and accumulated electrical energy (Watt-hours).</p>
+        </div>
+        <div class="card">
+          <h4><a href="https://calcmypower.com/how-long-will-a-100ah-battery-last" rel="dofollow">How Long Will a 100Ah Battery Last?</a></h4>
+          <p>Real-world runtime charts comparing LiFePO4 vs AGM lead-acid batteries powering everyday household appliances.</p>
+        </div>
+        <div class="card">
+          <h4><a href="https://calcmypower.com/solar-panels-series-vs-parallel" rel="dofollow">Solar Panels in Series vs Parallel</a></h4>
+          <p>Wiring diagrams, array voltage and current math, MPPT voltage window optimization, and partial shading analysis.</p>
+        </div>
+        <div class="card">
+          <h4><a href="https://calcmypower.com/how-much-energy-does-a-solar-panel-produce" rel="dofollow">How Much Energy Does a Solar Panel Produce?</a></h4>
+          <p>Realistic 400W solar panel yields, temperature coefficients, inverter clipping, and peak sun hour variables.</p>
+        </div>
+        <div class="card">
+          <h4><a href="https://calcmypower.com/how-many-amp-hours-do-i-need" rel="dofollow">How Many Amp Hours Do I Need for a Battery Bank?</a></h4>
+          <p>Calculate off-grid and backup storage capacity from daily watt-hours, battery voltage, and autonomy days.</p>
+        </div>
+        <div class="card">
+          <h4><a href="https://calcmypower.com/how-long-does-it-take-to-charge-a-battery-with-solar-panels" rel="dofollow">How Long Does It Take to Charge a Battery With Solar Panels?</a></h4>
+          <p>Charge time formula considering battery chemistry absorption profiles, MPPT efficiency, and daily solar irradiance.</p>
+        </div>
+        <div class="card">
+          <h4><a href="https://calcmypower.com/how-many-watts-can-a-15-amp-or-20-amp-circuit-handle" rel="dofollow">How Many Watts on a 15-Amp or 20-Amp Circuit?</a></h4>
+          <p>Continuous load ratings, NEC 80% breaker rules, copper conductor ampacities, and high-wattage appliance safety.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Governing Equations & Code Standards</h2>
+
+      <h3>1. NEC Continuous Load & Circuit Breaker Sizing (NEC 210.20(A))</h3>
+      <p>Under the National Electrical Code, any load energized for 3 hours or longer is designated as a continuous load. Overcurrent protection devices must not carry continuous loads exceeding 80% of their nameplate rating:</p>
+      <pre>I_continuous_max = I_breaker_rating * 0.80
+P_continuous_safe = V_circuit * I_breaker_rating * 0.80 * PF
+I_breaker_required = I_continuous_load * 1.25</pre>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Circuit Rating</th>
+            <th>Voltage</th>
+            <th>Peak Breaker Wattage</th>
+            <th>NEC 80% Continuous Limit</th>
+            <th>Minimum Conductor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>15 Amps</strong></td>
+            <td>120V AC</td>
+            <td>1,800 Watts</td>
+            <td><strong>1,440 Watts</strong></td>
+            <td>14 AWG Copper</td>
+          </tr>
+          <tr>
+            <td><strong>20 Amps</strong></td>
+            <td>120V AC</td>
+            <td>2,400 Watts</td>
+            <td><strong>1,920 Watts</strong></td>
+            <td>12 AWG Copper</td>
+          </tr>
+          <tr>
+            <td><strong>30 Amps</strong></td>
+            <td>240V AC</td>
+            <td>7,200 Watts</td>
+            <td><strong>5,760 Watts</strong></td>
+            <td>10 AWG Copper</td>
+          </tr>
+          <tr>
+            <td><strong>50 Amps</strong></td>
+            <td>240V AC</td>
+            <td>12,000 Watts</td>
+            <td><strong>9,600 Watts</strong></td>
+            <td>6 AWG Copper</td>
+          </tr>
+          <tr>
+            <td><strong>200 Amps</strong></td>
+            <td>240V AC</td>
+            <td>48,000 Watts</td>
+            <td><strong>38,400 Watts</strong></td>
+            <td>2/0 Cu or 4/0 Al</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>2. Motor Locked-Rotor Starting Surge (NEC Article 430)</h3>
+      <p>Compressors and electric pump motors draw inrush surge currents up to 6 times full-load amps. Portable and standby generators must support the total running wattage plus the single largest startup surge delta:</p>
+      <pre>P_starting_delta = P_starting_peak - P_running
+P_running_total = Sum(P_running_i)
+P_surge_max_delta = Max(P_starting_delta_i)
+P_generator_planning = (P_running_total + P_surge_max_delta) * 1.25</pre>
+
+      <h3>3. Battery Usable Energy & Inverter Runtime</h3>
+      <p>To accurately model battery reserve time, convert Amp-hour capacity to nominal energy (Wh) and apply chemistry Depth of Discharge (DoD) limits and DC-to-AC conversion losses:</p>
+      <pre>E_nominal_Wh = V_nominal_DC * Capacity_Ah
+E_usable_Wh = E_nominal_Wh * DoD_factor * Inverter_Efficiency
+Runtime_Hours = E_usable_Wh / P_AC_load_watts</pre>
+
+      <h3>4. Solar PV Array & Charge Controller Deratings (NEC Article 690)</h3>
+      <p>Solar charge controllers must be sized for continuous array power output plus a 125% safety factor to handle solar irradiance spikes and cold temperature open-circuit voltage (Voc) elevation:</p>
+      <pre>I_controller_nominal = P_array_STC / V_battery_nominal
+I_controller_planning = I_controller_nominal * 1.25
+Voc_cold = Voc_STC * [1 + Alpha_Voc * (T_min_record - 25)]</pre>
+
+      <h3>5. Conductor Voltage Drop (Ohm's Law & NEC 210.19(A))</h3>
+      <p>Branch circuits should be engineered to limit voltage drop to 3% or less for optimal equipment operating efficiency:</p>
+      <pre>Single-Phase AC / DC:   VD = 2 * I * (Length_ft / 1000) * R_conductor
+Three-Phase Balanced:   VD = sqrt(3) * I * (Length_ft / 1000) * R_conductor
+Voltage Drop Percent:   VD_percent = (VD / V_source) * 100</pre>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 <a href="https://calcmypower.com/" rel="dofollow">CalcMyPower.com</a>. Technical formulas grounded in NFPA 70 / NEC standards.</p>
+    <p>
+      <a href="https://calcmypower.com/" rel="dofollow">Home</a> |
+      <a href="https://calcmypower.com/calculators" rel="dofollow">Calculators Directory</a> |
+      <a href="https://calcmypower.com/about" rel="dofollow">About</a> |
+      <a href="https://calcmypower.com/contact" rel="dofollow">Contact</a> |
+      <a href="https://calcmypower.com/privacy" rel="dofollow">Privacy</a>
+    </p>
+  </footer>
+</body>
+</html>
